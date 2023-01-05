@@ -47,7 +47,7 @@ public class PluginInstance {
                 }
                 currentWakeLock.acquire(millisecond > 0 ? millisecond : 10 * 60 * 1000L);
             } else {
-                Log.e(LOG_TAG, "Wake Lock are supported in Android API level 21 or greater.");
+                Log.e(LOG_TAG, "Wake Lock are supported in Android API level 23 or greater.");
             }
         } else {
             activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
