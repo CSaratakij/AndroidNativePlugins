@@ -1,22 +1,28 @@
 package com.luvikung.nativeandroid;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.NotificationManager;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+
 import java.util.Calendar;
 
 public class PluginInstance {
     private static final String LOG_TAG = "UnityPlugins";
-    private static final int VERSION = 7;
+    private static final int VERSION = 9;
 
     public int getPluginVersion() {
         return VERSION;
@@ -86,6 +92,36 @@ public class PluginInstance {
         intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         activity.startActivity(intent);
+    }
+
+    public int areNotificationsEnabled() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            NotificationManager notificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (notificationManager != null)
+                return notificationManager.areNotificationsEnabled() ? 1 : 0;
+            else
+                return -2;
+        } else
+            return -1;
+    }
+
+    public int areNotificationsPaused() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            NotificationManager notificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (notificationManager != null)
+                return notificationManager.areNotificationsPaused() ? 1 : 0;
+            else
+                return -2;
+        } else
+            return -1;
+    }
+
+    public boolean shouldShowRequestPermission(String permission) {
+        return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
+    }
+
+    public void requestPermission(String permission) {
+        ActivityCompat.requestPermissions(activity, new String[]{permission}, 0);
     }
 
     public void alertDialog(String title, String message, boolean cancelable, String positive, String negative, String neutral) {
