@@ -11,7 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/miuiautostart" />
+            <option value="$PROJECT_DIR$/miui" />
             <option value="$PROJECT_DIR$/nativeandroid" />
           </set>
         </option>

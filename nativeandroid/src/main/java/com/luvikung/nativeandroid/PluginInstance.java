@@ -1,6 +1,5 @@
 package com.luvikung.nativeandroid;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -118,10 +117,6 @@ public class PluginInstance {
 
     public boolean shouldShowRequestPermission(String permission) {
         return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
-    }
-
-    public void requestPermission(String permission) {
-        ActivityCompat.requestPermissions(activity, new String[]{permission}, 0);
     }
 
     public void alertDialog(String title, String message, boolean cancelable, String positive, String negative, String neutral) {

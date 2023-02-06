@@ -1,4 +1,4 @@
-package com.luvikung.miuiautostart;
+package com.luvikung.miui;
 
 import org.junit.Test;
 
